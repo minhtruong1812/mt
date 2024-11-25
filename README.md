@@ -1,2 +1,2 @@
 # infoprofile
-Nguyễn Đinh Tiến Dũng
+Lê Minh Trường 
