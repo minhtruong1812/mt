@@ -482,9 +482,10 @@
     <!--<head>
 <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
 <meta name='google-adsense-platform-domain' content='blogspot.com'/>
-
-</head>-->
-    <audio src="https://dat887.000webhostapp.com/wp-content/uploads/2021/12/crazy_frog_we_wish_you_a_merry_christmas_mv_-7653592806440656651-1.mp3"></audio>
+    
+<head>-->
+    <title>Phát nhạc khi click</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             display: block;
@@ -495,6 +496,33 @@
             -o-user-select: none;
             user-select: none;
             unselectable: on;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin-top: 20%;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body onclick="playMusic()">
+    <h1>Nhấn vào bất kỳ đâu để phát nhạc</h1>
+    <audio id="background-audio" src="https://dat887.000webhostapp.com/wp-content/uploads/2021/12/crazy_frog_we_wish_you_a_merry_christmas_mv_-7653592806440656651-1.mp3"></audio>
+    <script>
+        function playMusic() {
+            const audio = document.getElementById('background-audio');
+            if (audio.paused) {
+                audio.play();
+            }
+        }
+    </script>
+</body>
+
+</html>
         }
     </style>
     <style>
