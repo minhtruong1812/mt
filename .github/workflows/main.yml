@@ -3,7 +3,7 @@ name: Scheduled Maintenance
 on:
   schedule:
     # Lịch chạy: 11:14 UTC (18:14 giờ Việt Nam)
-    - cron: '18 11 * * *'
+    - cron: '22 11 * * *'
 
 jobs:
   maintenance:
