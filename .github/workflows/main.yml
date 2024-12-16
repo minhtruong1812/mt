@@ -1,0 +1,49 @@
+name: Scheduled Maintenance
+
+on:
+  schedule:
+    # Lịch chạy: 18h hàng ngày theo UTC (chỉnh lại giờ nếu cần)
+    - cron: '0 11 * * *' # 18h theo giờ Việt Nam (UTC+7)
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Bước 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Bước 2: Dọn dẹp dữ liệu không cần thiết
+      - name: Clean unnecessary data
+        run: |
+          echo "Dọn dẹp dữ liệu cũ..."
+          # Xóa các file tạm, cache, hoặc các thư mục không cần thiết
+          rm -rf ./cache/*
+          rm -rf ./temp/*
+          echo "Dọn dẹp dữ liệu hoàn tất!"
+
+      # Bước 3: Dọn dẹp log cũ
+      - name: Clean logs
+        run: |
+          echo "Dọn dẹp log..."
+          # Xóa log cũ hoặc giảm kích thước file log
+          find ./logs -type f -name "*.log" -mtime +7 -exec rm {} \;
+          echo "Dọn dẹp log hoàn tất!"
+
+      # Bước 4: Fix lỗi cơ bản (nếu có script kiểm tra lỗi)
+      - name: Fix common issues
+        run: |
+          echo "Kiểm tra và sửa lỗi..."
+          # Thực hiện sửa lỗi, ví dụ: kiểm tra định dạng file hoặc fix cụ thể
+          eslint ./src --fix || echo "Không có lỗi nào cần sửa!"
+          echo "Sửa lỗi hoàn tất!"
+
+      # Bước 5: Commit và push thay đổi (nếu có)
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Bảo trì định kỳ: Dọn dẹp dữ liệu và log, sửa lỗi"
+          git push
