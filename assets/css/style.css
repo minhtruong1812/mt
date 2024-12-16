@@ -836,3 +836,58 @@ html:not(.dark) .close-btn {
   font-size: 14px;
   color: #666;
 }
+
+/* Reset cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1d1f2f;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container {
+    max-width: 600px;
+}
+
+h1 {
+    font-size: 8rem;
+    font-weight: bold;
+    color: #6366f1; /* Màu tím */
+}
+
+.oops {
+    font-size: 2rem;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 1rem;
+    margin: 20px 0;
+    line-height: 1.5;
+}
+
+.button {
+    display: inline-block;
+    background-color: #6366f1;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.button:hover {
+    background-color: #5254d8;
+}
