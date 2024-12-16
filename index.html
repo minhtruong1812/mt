@@ -1,44 +1,4 @@
-<head>
 <html lang="vi-VN" class="dark" data-title-loader="𝑴𝒊𝒏𝒉𝑻𝒓𝒖𝒐𝒏𝒈">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bảo trì</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            font-size: 2.5em;
-            color: #333;
-        }
-        p {
-            font-size: 1.2em;
-            color: #666;
-        }
-    </style>
-    <script>
-        // Đếm ngược 5 phút
-        let countdown = 300; // 300 giây = 5 phút
-        const timer = setInterval(() => {
-            countdown--;
-            document.getElementById('countdown').textContent = countdown + " giây";
-
-            // Hết thời gian, chuyển hướng về trang chính
-            if (countdown <= 0) {
-                clearInterval(timer);
-                window.location.href = "index.html"; // Đường dẫn về trang chính
-            }
-        }, 1000);
-    </script>
-</head>
-<body>
-    <h1>Website đang bảo trì</h1>
-    <p>Chúng tôi đang thực hiện bảo trì định kỳ. Vui lòng quay lại sau.</p>
-    <p>Thời gian còn lại: <span id="countdown">300 giây</span></p>
-</body>
 </html>
     <title>MinhTruong - Home</title>
     <meta property="og:title" content="Lê Minh Trường | Profile Home">
