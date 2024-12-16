@@ -18,7 +18,7 @@ jobs:
         run: |
           git mv mt baotri
           cp index.html index_backup.html
-          echo '<meta http-equiv="refresh" content="0; url=baotri/index.html">' > index.html
+          echo '<meta http-equiv="refresh" content="0; url=minhtruong1812.github.io/baotri/index.html">' > index.html
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
