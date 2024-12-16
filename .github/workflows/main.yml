@@ -2,29 +2,38 @@ name: Maintenance Mode
 
 on:
   schedule:
-    - cron: '30 4 * * *' # 11:30 Việt Nam
+    - cron: '30 4 * * *' # Chạy vào 11:30 giờ Việt Nam (4:30 UTC)
 
 jobs:
   maintenance:
     runs-on: ubuntu-latest
+
     steps:
+      # Bước 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Activate maintenance mode
+      # Bước 2: Đổi tên thư mục từ 'mt/' thành 'baotri/'
+      - name: Activate Maintenance Mode
         run: |
-          mv index.html index_backup.html
-          cp maintenance.html index.html
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html
+          git mv mt baotri
+          cp index.html index_backup.html
+          echo '<meta http-equiv="refresh" content="0; url=baotri/index.html">' > index.html
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
           git commit -m "Kích hoạt trang bảo trì"
           git push
 
-      - name: Restore main website
+      # Bước 3: Chờ 5 phút
+      - name: Wait for 5 minutes
+        run: sleep 300
+
+      # Bước 4: Khôi phục trang chính
+      - name: Restore Website
         run: |
-          sleep 300 # Giữ trang bảo trì trong 5 phút
+          git mv baotri mt
           mv index_backup.html index.html
-          git add index.html
+          git add .
           git commit -m "Khôi phục trang chính sau bảo trì"
           git push
