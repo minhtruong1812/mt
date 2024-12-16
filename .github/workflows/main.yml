@@ -2,7 +2,7 @@ name: Scheduled Maintenance
 
 on:
   schedule:
-    # Chạy vào 11:14 UTC mỗi ngày
+    # Lịch chạy: 11:14 UTC (18:14 giờ Việt Nam)
     - cron: '14 11 * * *'
 
 jobs:
@@ -14,33 +14,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Bước 2: Dọn dẹp dữ liệu không cần thiết
-      - name: Clean unnecessary data
+      # Bước 2: Hiển thị trạng thái bảo trì
+      - name: Activate maintenance page
         run: |
-          echo "Dọn dẹp dữ liệu cũ..."
-          rm -rf ./cache/*
-          rm -rf ./temp/*
-          echo "Dọn dẹp dữ liệu hoàn tất!"
-
-      # Bước 3: Dọn dẹp log
-      - name: Clean logs
-        run: |
-          echo "Dọn dẹp log..."
-          find ./logs -type f -name "*.log" -mtime +7 -exec rm {} \;
-          echo "Dọn dẹp log hoàn tất!"
-
-      # Bước 4: Fix lỗi cơ bản (nếu có script kiểm tra lỗi)
-      - name: Fix common issues
-        run: |
-          echo "Kiểm tra và sửa lỗi..."
-          eslint ./src --fix || echo "Không có lỗi nào cần sửa!"
-          echo "Sửa lỗi hoàn tất!"
-
-      # Bước 5: Commit và push thay đổi
-      - name: Commit and push changes
-        run: |
+          echo "Hiển thị trang bảo trì..."
+          mv index.html index_backup.html  # Sao lưu trang chính
+          cp maintenance.html index.html  # Thay thế bằng trang bảo trì
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Bảo trì định kỳ: Dọn dẹp dữ liệu và log, sửa lỗi"
+          git add index.html
+          git commit -m "Kích hoạt trang bảo trì"
+          git push
+
+      # Bước 3: Thực hiện các công việc bảo trì
+      - name: Perform maintenance
+        run: |
+          echo "Thực hiện bảo trì..."
+          # Các tác vụ bảo trì như dọn dẹp dữ liệu và log
+          rm -rf ./cache/*
+          rm -rf ./temp/*
+          find ./logs -type f -name "*.log" -mtime +7 -exec rm {} \;
+          echo "Bảo trì hoàn tất!"
+
+      # Bước 4: Khôi phục trang chính
+      - name: Restore main website
+        run: |
+          echo "Khôi phục trang chính..."
+          mv index_backup.html index.html  # Khôi phục trang chính
+          git add index.html
+          git commit -m "Khôi phục website sau bảo trì"
           git push
