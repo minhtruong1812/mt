@@ -31,6 +31,10 @@
             font-size: 1.2em;
             margin: 20px 0;
         }
+        #countdown {
+            font-weight: bold;
+            color: #3498db;
+        }
         .loader {
             border: 8px solid #f3f3f3;
             border-radius: 50%;
@@ -49,9 +53,31 @@
 <body>
     <div class="container">
         <h1>🔧 Máy Chủ Đang Bảo Trì</h1>
-        <p>Chúng tôi đang bảo trì hệ thống Nâng cấp để mang đến trải nghiệm tốt hơn cho bạn.</p>
+        <p>Chúng tôi đang nâng cấp hệ thống để mang đến trải nghiệm tốt hơn cho bạn.</p>
         <div class="loader"></div>
-        <p>Vui lòng quay lại sau!</p>
+        <p>Thời gian dự kiến hoàn thành:</p>
+        <p id="countdown"></p>
     </div>
-</body>
-</html>
+
+    <script>
+        // Tính toán thời gian kết thúc bảo trì (1 ngày sau)
+        const endTime = new Date();
+        endTime.setDate(endTime.getDate() + 1);
+
+        function updateCountdown() {
+            const now = new Date();
+            const timeLeft = endTime - now;
+
+            if (timeLeft > 0) {
+                const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+                const seconds = Math.floor((timeLeft / 1000) % 60);
+                document.getElementById("countdown").innerText = 
+                    `${hours} giờ, ${minutes} phút, ${seconds} giây`;
+            } else {
+                document.getElementById("countdown").innerText = "Bảo trì đã hoàn thành!";
+            }
+        }
+
+        // Cập nhật đếm ngược mỗi giây
+        setInterval(updateCountdown,
