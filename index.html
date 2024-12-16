@@ -1,4 +1,54 @@
 <html lang="vi-VN" class="dark" data-title-loader="𝑴𝒊𝒏𝒉𝑻𝒓𝒖𝒐𝒏𝒈">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #000;
+            color: #fff;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #ffcc00;
+        }
+        p {
+            font-size: 1.2em;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="maintenance" style="display: none;">
+        <h1>Website đang bảo trì</h1>
+        <p>Chúng tôi đang thực hiện bảo trì định kỳ. Vui lòng quay lại sau ít phút.</p>
+    </div>
+
+    <div id="main" style="display: none;">
+        <h1>Chào mừng đến với website!</h1>
+        <p>Website đã hoạt động bình thường sau bảo trì.</p>
+    </div>
+
+    <script>
+        // Thời gian bảo trì tính bằng mili giây (5 phút = 300,000 ms)
+        const maintenanceDuration = 5 * 60 * 1000;
+
+        // Xác định thời gian bắt đầu bảo trì (ở đây đặt thủ công)
+        const maintenanceStartTime = new Date("2024-06-16T11:30:00").getTime(); // Giờ bắt đầu bảo trì
+        const currentTime = new Date().getTime();
+
+        // Kiểm tra nếu website đang trong thời gian bảo trì
+        if (currentTime >= maintenanceStartTime && currentTime < maintenanceStartTime + maintenanceDuration) {
+            document.getElementById("maintenance").style.display = "block";
+        } else {
+            document.getElementById("main").style.display = "block";
+        }
+    </script>
+</body>
+</html>
 </html>
     <title>MinhTruong - Home</title>
     <meta property="og:title" content="Lê Minh Trường | Profile Home">
