@@ -1,46 +1,30 @@
-name: Scheduled Maintenance
+name: Maintenance Mode
 
 on:
   schedule:
-    # Lịch chạy: 11:14 UTC (18:14 giờ Việt Nam)
-    - cron: '30 4 * * *'
+    - cron: '30 4 * * *' # 11:30 Việt Nam
 
 jobs:
   maintenance:
     runs-on: ubuntu-latest
-
     steps:
-      # Bước 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Bước 2: Hiển thị trạng thái bảo trì
-      - name: Activate maintenance page
+      - name: Activate maintenance mode
         run: |
-          echo "Hiển thị trang bảo trì..."
-          mv index.html index_backup.html  # Sao lưu trang chính
-          cp maintenance.html index.html  # Thay thế bằng trang bảo trì
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          mv index.html index_backup.html
+          cp maintenance.html index.html
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add index.html
           git commit -m "Kích hoạt trang bảo trì"
           git push
 
-      # Bước 3: Thực hiện các công việc bảo trì
-      - name: Perform maintenance
-        run: |
-          echo "Thực hiện bảo trì..."
-          # Các tác vụ bảo trì như dọn dẹp dữ liệu và log
-          rm -rf ./cache/*
-          rm -rf ./temp/*
-          find ./logs -type f -name "*.log" -mtime +7 -exec rm {} \;
-          echo "Bảo trì hoàn tất!"
-
-      # Bước 4: Khôi phục trang chính
       - name: Restore main website
         run: |
-          echo "Khôi phục trang chính..."
-          mv index_backup.html index.html  # Khôi phục trang chính
+          sleep 300 # Giữ trang bảo trì trong 5 phút
+          mv index_backup.html index.html
           git add index.html
-          git commit -m "Khôi phục website sau bảo trì"
+          git commit -m "Khôi phục trang chính sau bảo trì"
           git push
