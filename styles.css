@@ -233,11 +233,11 @@ a {
   text-align: center;
   padding: 10px 0;
   font-family:'Times New Roman', Times, serif;
-  font-size: 12px;
+  font-size: 8px;
   color: #ffffff00;
 }
 h4 {
-  font-size: 20px;
+  font-size: 0px;
   line-height: 1px;
   font-family: "Amatic SC", cursive !important;
 }
@@ -336,7 +336,7 @@ h4 {
 }
 
 .card .details p {
-  font-size: 15px;
+  font-size: 10px;
   line-height: 5px;
   transform: rotate(-10deg);
   padding: 0 0 0 20px;
