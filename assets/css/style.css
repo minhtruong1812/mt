@@ -836,3 +836,137 @@ html:not(.dark) .close-btn {
   font-size: 14px;
   color: #666;
 }
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Title Styles */
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.title__separate {
+    border-bottom: 2px solid #2d88d9;
+    padding-bottom: 10px;
+}
+
+/* Box Container */
+.box-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.box-inner--rounded {
+    border-radius: 15px;
+    padding: 30px;
+}
+
+/* Swiper Styles */
+.swiper-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.swiper-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.swiper-slide {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.swiper-pagination {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    opacity: 0.7;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.swiper-pagination-bullet:hover {
+    background-color: #2d88d9;
+    opacity: 1;
+}
+
+/* Review Item */
+.review-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.review-item:hover {
+    transform: translateY(-5px);
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+
+.avatar__hexagon {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.review-item h4 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.review-item__caption {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Links */
+.td-caption {
+    text-decoration: none;
+    color: #2d88d9;
+    transition: color 0.3s ease;
+}
+
+.td-caption:hover {
+    color: #1a6bb6;
+}
